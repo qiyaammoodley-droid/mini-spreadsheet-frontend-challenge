@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#formula-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+#spreadsheet {
+    border: 1px solid #ccc;
+    min-height: 400px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+    width: 80px;
+    height: 30px;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+td {
+    cursor: pointer;
+}
+
+td:focus {
+    outline: 2px solid dodgerblue;
+}
