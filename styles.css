@@ -1,45 +1,101 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+/* GLOBAL RESET & FULL-SCREEN LAYOUT*/
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: #f4f5f7;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevents double scrollbars on the main window */
 }
 
+/* Page heading styling */
 h1 {
-    margin-bottom: 20px;
+    color: #107c41; 
+    font-size: 20px;
+    margin: 10px 20px 5px 20px;
 }
 
+/* FORMULA BAR COMPONENT */
 #formula-bar {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 16px;
+    width: calc(100% - 40px);
+    margin: 0 20px 10px 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: #ffffff;
+    transition: border-color 0.15s ease-in-out;
 }
 
+#formula-bar:focus {
+    border-color: #107c41; 
+}
+
+/*SPREADSHEET GRID CONTAINER*/
 #spreadsheet {
-    border: 1px solid #ccc;
-    min-height: 400px;
+    flex: 1; 
+    overflow: auto; 
+    border-top: 1px solid #b0b0b0;
+    background: #ffffff;
 }
 
+/* TABLE & DATA CELL STYLING*/
 table {
-    border-collapse: collapse;
-    width: 100%;
+    border-collapse: collapse; /* Merges borders into clean, single gridlines */
+    width: 100%; /* Spreads table columns evenly across page width */
+    table-layout: fixed; /* Forces columns to be exactly the same uniform width */
 }
 
-th,
-td {
-    border: 1px solid #ccc;
-    width: 80px;
+/* Rules applied to both header labels and standard input cells */
+th, td {
+    border: 1px solid #d0d0d0; 
     height: 30px;
-    text-align: center;
+    font-size: 13px;
+    padding: 4px 8px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
+/* Style for row numbers and column letters */
 th {
-    background-color: #f4f4f4;
+    background-color: #eaeaea;
+    color: #444444;
+    font-weight: 600;
+    text-align: center;
+    user-select: none; /* Stops text highlighting when dragging across blocks */
 }
 
-td {
-    cursor: pointer;
+/* Overriding structural constraints to lock the first row index column width down */
+tr th:first-child {
+    width: 50px ;
+    min-width: 50px ;
+    max-width: 50px ;
+    background-color: #eaeaea;
 }
 
-td:focus {
-    outline: 2px solid dodgerblue;
+/* Interactive editable cell parameters */
+td[contenteditable="true"] {
+    outline: none;
+    cursor: text;
+    background-color: #ffffff;
+    text-align: left;
+}
+
+/* Active focus tracking border */
+td[contenteditable="true"]:focus {
+    outline: 2px solid #107c41; 
+      z-index: 10;
+}
+
+/* Highlight style applied to row/col index headers when a cell is selected */
+.header-active {
+    background: #d0ebd4 ;
+    color: #107c41 ;
 }
