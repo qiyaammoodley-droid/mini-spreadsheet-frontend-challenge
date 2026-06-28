@@ -30,10 +30,10 @@ function createSpreadsheet() {
         for (let col = 0; col < CONFIG.COLUMNS; col++) {
             const td = document.createElement("td");
             td.contentEditable = true;
-            
+
             const cellId = String.fromCharCode(65 + col) + row;
-            td.dataset.cell = cellId; 
-            
+            td.dataset.cell = cellId;
+
             tr.appendChild(td);
         }
         table.appendChild(tr);
@@ -55,7 +55,7 @@ function setupUIEventListeners() {
         if (cell.tagName === "TD" && cell.dataset.cell) {
             activeCellId = cell.dataset.cell;
             formulaBar.placeholder = `Editing Cell ${activeCellId}`;
-            
+
             // Show formula if it exists in state, otherwise show plain text
             const rawValue = (window.sheetState && window.sheetState.rawCells[activeCellId]) ?? cell.textContent;
             cell.textContent = rawValue;
@@ -72,8 +72,11 @@ function setupUIEventListeners() {
             highlightHeaders(cell.dataset.cell, false);
 
             // Save the raw text into the global shared state
-            if (window.sheetState) {
-                window.sheetState.rawCells[cell.dataset.cell] = cell.textContent;
+            if (window.engine) {
+                window.engine.updateCell(
+                    cell.dataset.cell,
+                    cell.textContent
+                );
             }
         }
     });
@@ -89,8 +92,8 @@ function setupUIEventListeners() {
 
 // 3. HIGHLIGHT THE ACTIVE ROW/COLUMN HEADERS
 function highlightHeaders(cellId, shouldHighlight) {
-    const colLetter = cellId.replace(/[0-9]/g, ''); 
-    const rowNumber = cellId.replace(/[A-Z]/g, ''); 
+    const colLetter = cellId.replace(/[0-9]/g, '');
+    const rowNumber = cellId.replace(/[A-Z]/g, '');
 
     const colHeader = document.getElementById(`col-${colLetter}`);
     const rowHeader = document.getElementById(`row-${rowNumber}`);
