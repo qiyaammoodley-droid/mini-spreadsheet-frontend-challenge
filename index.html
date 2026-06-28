@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,23 @@
 
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <h1>Mini Spreadsheet</h1>
 
-    <input
-        type="text"
-        id="formula-bar"
-        placeholder="Formula Bar"
-    >
+    <input type="text" id="formula-bar" placeholder="Formula Bar">
 
     <div id="spreadsheet"></div>
-
+    
     <script src="js/config.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/parser.js"></script>
-    <script src="js/engine.js"></script>
+    <script src="Parser.js"></script>
     <script src="js/dependencyGraph.js"></script>
+    <script src="js/engine.js"></script>
     <script src="js/errors.js"></script>
+    <script src="js/ui.js"></script>
     <script src="js/main.js"></script>
 
 </body>
+
 </html>
